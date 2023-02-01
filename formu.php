@@ -14,8 +14,8 @@ if(!empty($IdEmpleados) || !empty($Nom) || !empty($Ape) || !empty($Tel) ){
     if(mysqli_connect_error()){
         die('connect error('.mysqli_connect_error().')'.mysqli_connect_error());
     }
-    else(
-        $SELECT = "SELECT tel from empleados1 where tel = ? limit 1 ";
+    else{
+        $SELECT = "SELECT Tel FROM empleados1 WHERE Tel = ? limit 1 ";
         $INSERT = "INSERT INTO empleados1 (IdEmpleados,Nom,Ape,Tel)
         values(?,?,?,?)";
 
@@ -37,7 +37,7 @@ if(!empty($IdEmpleados) || !empty($Nom) || !empty($Ape) || !empty($Tel) ){
         }
         $stmt->close();
         $conn->close();
-    )
+    }
 }
 else{
     echo "Todos los datos son Obligatorios";
