@@ -1,10 +1,25 @@
 <?php
-$IdEmpleados = $_POST['IdEmpleados'];
-$Nom = $_POST['Nom'];
-$Ape = $_POST['Ape'];
-$Tel = $_POST['Tel'];
+$Nom = $_POST['PERCVE'];
+$Ape = $_POST['PERAPE'];
+$Tel = $_POST['PERNOM'];
+$Nom = $_POST['PDOCVE'];
+$Ape = $_POST['LUNHRA'];
+$Tel = $_POST['LUNAUL'];
+$Ape = $_POST['MARHRA'];
+$Tel = $_POST['MARAUL'];
+$Ape = $_POST['MIEHRA'];
+$Tel = $_POST['MIEAUL'];
+$Ape = $_POST['JUEHRA'];
+$Tel = $_POST['JUEAUL'];
+$Ape = $_POST['VIEHRA'];
+$Tel = $_POST['VIEAUL'];
+$Ape = $_POST['SABHRA'];
+$Tel = $_POST['SABAUL'];
+$Ape = $_POST['DOMHRA'];
+$Tel = $_POST['DOMAUL'];
 
-if(!empty($IdEmpleados) || !empty($Nom) || !empty($Ape) || !empty($Tel) ){
+if(!empty($PERCVE) || !empty($PERAPE) || !empty($PERNOM) || !empty($PDOCVE) || !empty($LUNHRA) || !empty($LUNAUL) || !empty($MARHRA) || !empty($MARAUL) || !empty($MIEHRA) || !empty($MIEAUL) 
+    || !empty($JUEHRA) || !empty($JUEAUL) || !empty($VIEHRA) || !empty($VIEAUL) || !empty($SABHRA) || !empty($SABAUL) || !empty($DOMHRA) || !empty($DOMAUL) ){
     $host = "192.168.51.40";
     $dbusername = "dbadmin";
     $dbpassword = "^Tecnm1072";
@@ -15,7 +30,6 @@ if(!empty($IdEmpleados) || !empty($Nom) || !empty($Ape) || !empty($Tel) ){
         die('connect error('.mysqli_connect_error().')'.mysqli_connect_error());
     }
     else{
-        $SELECT = "SELECT Tel FROM empleados1 WHERE Tel = ? limit 1 ";
         $INSERT = "INSERT INTO empleados1 (IdEmpleados,Nom,Ape,Tel)
         values(?,?,?,?)";
 
