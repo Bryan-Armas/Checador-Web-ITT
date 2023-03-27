@@ -18,8 +18,10 @@ $SABAUL = $_POST['SABAUL'];
 $DOMHRA = $_POST['DOMHRA'];
 $DOMAUL = $_POST['DOMAUL'];
 
-if(!empty($PERCVE) || !empty($PERAPE) || !empty($PERNOM) || !empty($PDOCVE) || !empty($LUNHRA) || !empty($LUNAUL) || !empty($MARHRA) || !empty($MARAUL) || !empty($MIEHRA) || !empty($MIEAUL) 
-    || !empty($JUEHRA) || !empty($JUEAUL) || !empty($VIEHRA) || !empty($VIEAUL) || !empty($SABHRA) || !empty($SABAUL) || !empty($DOMHRA) || !empty($DOMAUL) ){
+if(!empty($PERCVE) || !empty($PERAPE) || !empty($PERNOM) || !empty($PDOCVE) || !empty($LUNHRA) 
+    || !empty($LUNAUL) || !empty($MARHRA) || !empty($MARAUL) || !empty($MIEHRA) || !empty($MIEAUL) 
+    || !empty($JUEHRA) || !empty($JUEAUL) || !empty($VIEHRA) || !empty($VIEAUL) 
+    || !empty($SABHRA) || !empty($SABAUL) || !empty($DOMHRA) || !empty($DOMAUL) ){
     $host = "192.168.51.40";
     $dbusername = "dbadmin";
     $dbpassword = "^Tecnm1072";
@@ -31,7 +33,8 @@ if(!empty($PERCVE) || !empty($PERAPE) || !empty($PERNOM) || !empty($PDOCVE) || !
     }
     else{
         $SELECT = "SELECT PERCVE from bd where PERCVE = ? limit 1 ";
-        $INSERT = "INSERT INTO bd (PERCVE,PERAPE,PERNOM,PDOCVE,LUNHRA,LUNAUL,MARHRA,MARAUL,MIEHRA,MIEAUL,JUEHRA,JUEAUL,VIEHRA,VIEAUL,SABHRA,SABAUL,DOMHRA,DOMAUL)
+        $INSERT = "INSERT INTO bd (PERCVE,PERAPE,PERNOM,PDOCVE,LUNHRA,LUNAUL,MARHRA,MARAUL,MIEHRA
+                   ,MIEAUL,JUEHRA,JUEAUL,VIEHRA,VIEAUL,SABHRA,SABAUL,DOMHRA,DOMAUL)
         values(?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?)";
 
         $stmt = $conn->prepare($SELECT);
@@ -43,8 +46,9 @@ if(!empty($PERCVE) || !empty($PERAPE) || !empty($PERNOM) || !empty($PDOCVE) || !
         if($rnum == 0){
             $stmt ->close();
             $stmt = $conn->prepare($INSERT);
-            $stmt ->bind_param( "iiiiisisisisisisis", $PERCVE,$PERAPE,$PERNOM,$PDOCVE,$LUNHRA,$LUNAUL,$MARHRA,$MARAUL,$MIEHRA,$MIEAUL,$JUEHRA,$JUEAUL,$VIEHRA,$VIEAUL,$SABHRA,$SABAUL,
-            $DOMHRA,$DOMAUL);
+            $stmt ->bind_param( "iiiiisisisisisisis", $PERCVE,$PERAPE,$PERNOM,$PDOCVE,$LUNHRA
+                                 ,$LUNAUL,$MARHRA,$MARAUL,$MIEHRA,$MIEAUL,$JUEHRA,$JUEAUL
+                                 ,$VIEHRA,$VIEAUL,$SABHRA,$SABAUL,$DOMHRA,$DOMAUL);
             $stmt ->execute();
             echo "Registro Completado";
         }

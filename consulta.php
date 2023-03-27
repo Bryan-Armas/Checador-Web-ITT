@@ -1,6 +1,4 @@
         <?php
-            include ("Conexion.php");
-            global $conex;
 
             echo "<table width='840'>";
             echo "<tbody>";
@@ -42,9 +40,9 @@
                 echo "<td align ='center'>".$row['JUEAUL']."</td>";
                 echo "<td align ='center'>".$row['VIEHRA']."</td>";
                 echo "<td align ='center'>".$row['VIEAUL']."</td>";
-                echo "<td align ='center'>".$row['SABHRA']."</td>";
+                echo "<td align ='center'>".$row['SABHRA']."</td>"; 
                 echo "<td align ='center'>".$row['SABAUL']."</td>";
-                echo "<td align ='center'>".$row['ADOMHRApe']."</td>";
+                echo "<td align ='center'>".$row['DOMHRA']."</td>";
                 echo "<td align ='center'>".$row['DOMAUL']."</td>";
                 echo '<td><a href="cod_eliminar.php?id='.$row['id'].'">Eliminar usuario</a></td>';
                 echo "</tr>";
