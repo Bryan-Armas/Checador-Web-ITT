@@ -1,10 +1,9 @@
 <?php
-  include ("Conexion.php");
-  global $conex;
+  global $conn;
 
   if(isset($_GET['id']) ){
 
-    if(!mysql_query($conex,"DELETE FROM usuario where id='".$PERCVE."'"))
+    if(!mysql_query($conn,"DELETE FROM bd where id='".$PERCVE."'"))
     {
         echo "Error!";
     }

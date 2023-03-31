@@ -43,7 +43,8 @@ if(!empty($PERCVE) || !empty($PERAPE) || !empty($PERNOM) || !empty($PDOCVE) || !
         $stmt ->bind_result($PERCVE);
         $stmt ->store_result();
         $rnum =$stmt->num_rows;
-        if($rnum == 0){
+        if($rnum == 0)
+        {
             $stmt ->close();
             $stmt = $conn->prepare($INSERT);
             $stmt ->bind_param( "iiiiisisisisisisis", $PERCVE,$PERAPE,$PERNOM,$PDOCVE,$LUNHRA
@@ -59,7 +60,8 @@ if(!empty($PERCVE) || !empty($PERAPE) || !empty($PERNOM) || !empty($PDOCVE) || !
         $conn->close();
     }
 }
-else{
+else
+{
     echo "Todos los datos son Obligatorios";
     die();
 }

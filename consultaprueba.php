@@ -1,9 +1,10 @@
 <?php
 
-if(!trait_exists($PERCVE) || !trait_exists($PERAPE) || !trait_exists($PERNOM) || !trait_exists($PDOCVE) || !trait_exists($LUNHRA) 
-    || !trait_exists($LUNAUL) || !trait_exists($MARHRA) || !trait_exists($MARAUL) || !trait_exists($MIEHRA) || !trait_exists($MIEAUL) 
-    || !trait_exists($JUEHRA) || !trait_exists($JUEAUL) || !trait_exists($VIEHRA) || !trait_exists($VIEAUL) 
-    || !trait_exists($SABHRA) || !trait_exists($SABAUL) || !trait_exists($DOMHRA) || !trait_exists($DOMAUL)  ){
+$PERCVE = $_POST['PERCVE'];
+$PERAPE = $_POST['PERAPE'];
+$PERNOM = $_POST['PERNOM'];
+
+if(!trait_exists($PERCVE) || !trait_exists($PERAPE) || !trait_exists($PERNOM)){
     $host = "192.168.51.40";
     $dbusername = "dbadmin";
     $dbpassword = "^Tecnm1072";
@@ -37,7 +38,7 @@ if(!trait_exists($PERCVE) || !trait_exists($PERAPE) || !trait_exists($PERNOM) ||
         echo "<th width='100'> DOMAUL </th>";
         echo "</tr>";
 
-        $sql=mysqli_query($conn, "SELECT* FROM bd");
+        $sql=mysqli_query($conn, "SELECT* FROM bd where PERCVE = $PERCVE");
             while($row =mysqli_fetch_array($sql)){
 
         echo "<tr>";
