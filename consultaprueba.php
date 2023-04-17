@@ -1,10 +1,9 @@
 <?php
 
 $PERCVE = $_POST['PERCVE'];
-$PERAPE = $_POST['PERAPE'];
-$PERNOM = $_POST['PERNOM'];
 
-if(!trait_exists($PERCVE) || !trait_exists($PERAPE) || !trait_exists($PERNOM)){
+
+if(!trait_exists($PERCVE)){
     $host = "192.168.51.40";
     $dbusername = "dbadmin";
     $dbpassword = "^Tecnm1072";
@@ -60,6 +59,7 @@ if(!trait_exists($PERCVE) || !trait_exists($PERAPE) || !trait_exists($PERNOM)){
         echo "<td align ='center'>".$row['SABAUL']."</td>";
         echo "<td align ='center'>".$row['DOMHRA']."</td>";
         echo "<td align ='center'>".$row['DOMAUL']."</td>";
+        echo '<td><a href="cod_eliminar.php?PERCVE='.$row['PERCVE'].'">Eliminar usuario</a></td>';
         echo "</tr>";
         }
         echo "</tbody>";
