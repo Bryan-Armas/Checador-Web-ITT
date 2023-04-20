@@ -10,6 +10,7 @@
     </head>
     <body>
         <div class="formulario">
+            <h3>Personal con Materias</h3>
         <form action="formu.php" method="post">
             <table>
                 <tr>
@@ -127,6 +128,84 @@
                 </tr>
             </table>
         </form>
+
+        <h3>Personal sin Materias</h3>
+            <form action="formuA.php" method="post">
+                <table>
+                    <tr>
+                        <td>Periodo:</td>
+                        <td>
+                            <input type="number" placeholder="Periodo" name="PDOCVE" required>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>Clave personal:</td>
+                    <td>
+                        <input type="number" placeholder="Clave personal" name="PERCVE" required>
+                    </td>
+                    </tr>
+                    <tr>
+                        <td>HOPHRS:</td>
+                        <td>
+                            <input type="number" placeholder="HOPHRS" name="HOPHRS" required>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>HOPDES:</td>
+                        <td>
+                            <input type="number" placeholder="HOPDES" name="HOPDES" required>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>HOPHFG:</td>
+                        <td>
+                            <input type="number" placeholder="HOPHFG" name="HOPHFG" required>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>HOPOTR:</td>
+                        <td>
+                            <input type="number" placeholder="HOPOTR" name="HOPOTR" required>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>HOPTUT:</td>
+                        <td>
+                            <input type="number" placeholder="HOPTUT" name="HOPTUT" required>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>PERAPE:</td>
+                        <td>
+                            <input type="text" placeholder="Apellidos" name="PERAPE" required>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>PERNOM:</td>
+                        <td>
+                            <input type="text" placeholder="Nombres" name="PERNOM" required>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>PERSIG:</td>
+                        <td>
+                            <input type="number" placeholder="PERSIG" name="PERSIG" required>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>PERTAR:</td>
+                        <td>
+                            <input type="number" placeholder="PERTAR" name="PERTAR" required>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>
+                            <input type="submit" value="Enviar" name="enviar">
+                        </td>
+                    </tr>
+                </table>
+            </form>
         </div>
+
     </body>
 </html>
