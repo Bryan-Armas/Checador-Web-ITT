@@ -1,19 +1,21 @@
 <?php
 $PDOCVE = $_POST['PDOCVE'];
 $PERCVE = $_POST['PERCVE'];
-$HOPHRS = $_POST['HOPHRS'];
-$HOPDES = $_POST['HOPDES'];
-$HOPHFG = $_POST['HOPHFG'];
-$HOPOTR = $_POST['HOPOTR'];
-$HOPTUT = $_POST['HOPTUT'];
 $PERAPE = $_POST['PERAPE'];
 $PERNOM = $_POST['PERNOM'];
-$PERSIG = $_POST['PERSIG'];
-$PERTAR = $_POST['PERTAR'];
+$ACTCVE = $_POST['ACTCVE'];
+$OTRLUG = $_POST['OTRLUG'];
+$LUNHRA = $_POST['LUNHRA'];
+$MARHRA = $_POST['MARHRA'];
+$MIEHRA = $_POST['MIEHRA'];
+$JUEHRA = $_POST['JUEHRA'];
+$VIEHRA = $_POST['VIEHRA'];
+$SABHRA = $_POST['SABHRA'];
+$DOMHRA = $_POST['DOMHRA'];
 
-if(!empty($PDOCVE) || !empty($PERCVE) || !empty($HOPHRS) || !empty($HOPDES) || !empty($HOPHFG) 
-|| !empty($HOPOTR) || !empty($HOPTUT) || !empty($PERAPE) || !empty($PERNOM) || !empty($PERSIG) 
-|| !empty($PERTAR) ){
+if(!empty($PDOCVE) || !empty($PERCVE) || !empty($PERAPE) || !empty($PERNOM) || !empty($ACTCVE) 
+|| !empty($OTRLUG) || !empty($LUNHRA) || !empty($MARHRA) || !empty($MIEHRA) || !empty($JUEHRA) 
+|| !empty($VIEHRA) || !empty($SABHRA) || !empty($DOMHRA) ){
     $host = "192.168.51.40";
     $dbusername = "dbadmin";
     $dbpassword = "^Tecnm1072";
@@ -24,9 +26,9 @@ if(!empty($PDOCVE) || !empty($PERCVE) || !empty($HOPHRS) || !empty($HOPDES) || !
         die('connect error('.mysqli_connect_error().')'.mysqli_connect_error());
     }
     else{
-        $SELECT = "SELECT PERCVE from bd where PERCVE = ? limit 1 ";
-        $INSERT = "INSERT INTO bd (PDOCVE,PERCVE,HOPHRS,HOPDES,HOPHFG,HOPOTR,HOPTUT,PERAPE,PERNOM,PERSIG,PERTAR)
-        values(?,?,?,?,?,?,?,?,?,?,?)";
+        $SELECT = "SELECT PERCVE from administrativos where PERCVE = ? limit 1 ";
+        $INSERT = "INSERT INTO administrativos (PDOCVE,PERCVE,PERAPE,PERNOM,ACTCVE,OTRLUG,LUNHRA,MARHRA,MIEHRA,JUEHRA,VIEHRA,SABHRA,DOMHRA)
+        values(?,?,?,?,?,?,?,?,?,?,?,?,?)";
 
         $stmt = $conn->prepare($SELECT);
         $stmt ->bind_param( "i", $PERCVE);
@@ -38,7 +40,7 @@ if(!empty($PDOCVE) || !empty($PERCVE) || !empty($HOPHRS) || !empty($HOPDES) || !
         {
             $stmt ->close();
             $stmt = $conn->prepare($INSERT);
-            $stmt ->bind_param( "iiiiiiissii", $PDOCVE,$PERCVE,$HOPHRS,$HOPDES,$HOPHFG,$HOPOTR,$HOPTUT,$PERAPE,$PERNOM,$PERSIG,$PERTAR);
+            $stmt ->bind_param( "iisssssssssss", $PDOCVE,$PERCVE,$PERAPE,$PERNOM,$ACTCVE,$OTRLUG,$LUNHRA,$MARHRA,$MIEHRA,$JUEHRA,$VIEHRA,$SABHRA,$DOMHRA);
             $stmt ->execute();
             echo "Registro Completado";
         }
