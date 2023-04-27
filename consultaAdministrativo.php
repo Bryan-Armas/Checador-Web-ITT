@@ -49,7 +49,7 @@ if(!trait_exists($PERCVE)){
         echo "<td align ='center'>".$row['VIEHRA']."</td>";
         echo "<td align ='center'>".$row['SABHRA']."</td>"; 
         echo "<td align ='center'>".$row['DOMHRA']."</td>";
-        echo '<td><a href="cod_eliminar.php?PERCVE='.$row['PERCVE'].'">Eliminar usuario</a></td>';
+        echo '<td><a href="Administrativo_eliminar.php?PERCVE='.$row['PERCVE'].'">Eliminar usuario</a></td>';
         echo "</tr>";
         }
         echo "</tbody>";
