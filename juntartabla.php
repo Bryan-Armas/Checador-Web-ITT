@@ -1,90 +1,318 @@
 <?php
+// Conexión a la base de datos
+$servername = "192.168.51.40";
+$username = "dbadmin";
+$password = "^Tecnm1072";
+$dbname = "Checador";
 
-if(!trait_exists($PERCVE)){
-    $host = "192.168.51.40";
-    $dbusername = "dbadmin";
-    $dbpassword = "^Tecnm1072";
-    $dbname = "Checador";
+$conn = new mysqli($servername, $username, $password, $dbname);
 
-    $conn = new mysqli($host,$dbusername,$dbpassword,$dbname);
-    if(mysqli_connect_error()){
-        die('connect error('.mysqli_connect_error().')'.mysqli_connect_error());
+// Comprobar la conexión
+if ($conn->connect_error) {
+    die("Error en la conexión: " . $conn->connect_error);
+}
+
+// Crear una nueva tabla para almacenar los resultados
+$createTableSQL = "CREATE TABLE IF NOT EXISTS nueva_tabla1 (
+    ID int not null AUTO_INCREMENT,
+    PERCVE INT,
+    PDOCVE INT,
+    Entrada time,
+    Salida time,
+    IDdia int,
+    IDturno int, 
+    PRIMARY KEY(ID)
+)";
+$conn->query($createTableSQL);
+
+// Consulta para obtener los datos de la tabla 1
+$sql1 = "SELECT PERCVE, PDOCVE FROM tabla1
+GROUP by PERCVE, PDOCVE;";
+$result1 = $conn->query($sql1);
+
+// Iterar sobre los datos de la tabla 1
+if ($result1->num_rows > 0) {
+    while ($row1 = $result1->fetch_assoc()) {
+        $PERCVE = $row1['PERCVE'];
+        $PDOCVE = $row1['PDOCVE'];
+
+        if ($PDOCVE != '') {
+        $sql2 = "SELECT EntradaLUN, SalidaLUN FROM tabla1
+        Where PERCVE = ". $PERCVE ." and PDOCVE = ". $PDOCVE;
+        $result2 = $conn->query($sql2);
+
+        // Lunes
+        if ($result2->num_rows > 0) {
+            while ($row2 = $result2->fetch_assoc()) {
+                $Entrada1 = $row2['EntradaLUN'];
+                $Salida1 = $row2['SalidaLUN'];
+                $IDdia1 = 1;
+                if ($Entrada1 != '' and $Salida1 != '') {
+                    $IDturno = 0;
+                    if (str_contains($Entrada1,'p. m.')){
+                        $IDturno = 1;
+                    }
+                    $insertSQL = "INSERT INTO nueva_tabla1 (PERCVE, PDOCVE, Entrada, Salida, IDdia, IDturno)
+                    VALUES ('$PERCVE', '$PDOCVE', '$Entrada1', '$Salida1', '$IDdia1', '$IDturno')";
+                    $conn->query($insertSQL);
+                }          
+            }      
+        }
+
+        // Martes
+        $sql2 = "SELECT EntradaMAR, SalidaMAR FROM tabla1
+        Where PERCVE = ". $PERCVE ." and PDOCVE = ". $PDOCVE;
+        $result3 = $conn->query($sql2);
+        if ($result3->num_rows > 0) {
+            while ($row3 = $result3->fetch_assoc()) {
+                $Entrada1 = $row3['EntradaMAR'];
+                $Salida1 = $row3['SalidaMAR'];
+                $IDdia1 = 2;
+                if ($Entrada1 != '' and $Salida1 != '') {
+                    $IDturno = 0;
+                    if (str_contains($Entrada1,'p. m.')){
+                        $IDturno = 1;
+                    }
+                    $insertSQL = "INSERT INTO nueva_tabla1 (PERCVE, PDOCVE, Entrada, Salida, IDdia, IDturno)
+                    VALUES ('$PERCVE', '$PDOCVE', '$Entrada1', '$Salida1', '$IDdia1', '$IDturno')";
+                    $conn->query($insertSQL);
+                }          
+            }      
+        }
+
+        // miercoles
+        $sql2 = "SELECT EntradaMIE, SalidaMIE FROM tabla1
+        Where PERCVE = ". $PERCVE ." and PDOCVE = ". $PDOCVE;
+        $result4 = $conn->query($sql2);
+        if ($result4->num_rows > 0) {
+            while ($row4 = $result4->fetch_assoc()) {
+                $Entrada1 = $row4['EntradaMIE'];
+                $Salida1 = $row4['SalidaMIE'];
+                $IDdia1 = 3;
+                if ($Entrada1 != '' and $Salida1 != '') {
+                    $IDturno = 0;
+                    if (str_contains($Entrada1,'p. m.')){
+                        $IDturno = 1;
+                    }
+                    $insertSQL = "INSERT INTO nueva_tabla1 (PERCVE, PDOCVE, Entrada, Salida, IDdia, IDturno)
+                    VALUES ('$PERCVE', '$PDOCVE', '$Entrada1', '$Salida1', '$IDdia1', '$IDturno')";
+                    $conn->query($insertSQL);
+                }          
+            }      
+        }
+
+        // jueves
+        $sql2 = "SELECT EntradaJUE, SalidaJUE FROM tabla1
+        Where PERCVE = ". $PERCVE ." and PDOCVE = ". $PDOCVE;
+        $result5 = $conn->query($sql2);
+        if ($result5->num_rows > 0) {
+            while ($row5 = $result5->fetch_assoc()) {
+                $Entrada1 = $row5['EntradaJUE'];
+                $Salida1 = $row5['SalidaJUE'];
+                $IDdia1 = 4;
+                if ($Entrada1 != '' and $Salida1 != '') {
+                    $IDturno = 0;
+                    if (str_contains($Entrada1,'p. m.')){
+                        $IDturno = 1;
+                    }
+                    $insertSQL = "INSERT INTO nueva_tabla1 (PERCVE, PDOCVE, Entrada, Salida, IDdia, IDturno)
+                    VALUES ('$PERCVE', '$PDOCVE', '$Entrada1', '$Salida1', '$IDdia1', '$IDturno')";
+                    $conn->query($insertSQL);
+                }          
+            }      
+        }
+
+        // viernes
+        $sql2 = "SELECT EntradaVIE, SalidaVIE FROM tabla1
+        Where PERCVE = ". $PERCVE ." and PDOCVE = ". $PDOCVE;
+        $result6 = $conn->query($sql2);
+        if ($result6->num_rows > 0) {
+            while ($row6 = $result6->fetch_assoc()) {
+                $Entrada1 = $row6['EntradaVIE'];
+                $Salida1 = $row6['SalidaVIE'];
+                $IDdia1 = 5;
+                if ($Entrada1 != '' and $Salida1 != '') {
+                    $IDturno = 0;
+                    if (str_contains($Entrada1,'p. m.')){
+                        $IDturno = 1;
+                    }
+                    $insertSQL = "INSERT INTO nueva_tabla1 (PERCVE, PDOCVE, Entrada, Salida, IDdia, IDturno)
+                    VALUES ('$PERCVE', '$PDOCVE', '$Entrada1', '$Salida1', '$IDdia1', '$IDturno')";
+                    $conn->query($insertSQL);
+                }          
+            }      
+        }
+
+        // sabado
+        $sql2 = "SELECT EntradaSAB, SalidaSAB FROM tabla1
+        Where PERCVE = ". $PERCVE ." and PDOCVE = ". $PDOCVE;
+        $result7 = $conn->query($sql2);
+        if ($result7->num_rows > 0) {
+            while ($row7 = $result7->fetch_assoc()) {
+                $Entrada1 = $row7['EntradaSAB'];
+                $Salida1 = $row7['SalidaSAB'];
+                $IDdia1 = 6;
+                if ($Entrada1 != '' and $Salida1 != '') {
+                    $IDturno = 0;
+                    if (str_contains($Entrada1,'p. m.')){
+                        $IDturno = 1;
+                    }
+                    $insertSQL = "INSERT INTO nueva_tabla1 (PERCVE, PDOCVE, Entrada, Salida, IDdia, IDturno)
+                    VALUES ('$PERCVE', '$PDOCVE', '$Entrada1', '$Salida1', '$IDdia1', '$IDturno')";
+                    $conn->query($insertSQL);
+                }          
+            }      
+        }
     }
-    else{
 
-        $query = "SELECT t1.PERCVE, t1.PERAPE, t1.PERNOM, t1.PDOCVE,
-t1.EntradaLUN, t1.SalidaLUN, t1.EntradaMAR, t1.SalidaMAR,
-t1.EntradaMIE, t1.SalidaMIE, t1.EntradaJUE, t1.SalidaJUE,
-t1.EntradaVIE, t1.SalidaVIE, t1.EntradaSAB, t1.SalidaSAB,
-t1.EntradaDOM, t1.SalidaDOM
-FROM tabla1 AS t1
-INNER JOIN tabla2 AS t2 ON t1.PERCVE = t2.PERCVE";
-$result = mysqli_query($conn, $query);
+}
+}
 
-$tablaNueva = array();
-while ($row = mysqli_fetch_assoc($result)) {
-    $id = $row['PERCVE'];
 
-    if (!isset($tablaNueva[$id])) {
-        // Si es la primera vez que se encuentra el PERCVE, se agrega como nueva entrada en la tabla
-        $tablaNueva[$id] = $row;
-    } else {
-        // Si ya existe una entrada para el PERCVE, se compara y actualiza las horas
-        $tablaNueva[$id]['EntradaLUN'] = min($tablaNueva[$id]['EntradaLUN'], $row['EntradaLUN']);
-        $tablaNueva[$id]['SalidaLUN'] = max($tablaNueva[$id]['SalidaLUN'], $row['SalidaLUN']);
-        $tablaNueva[$id]['EntradaMAR'] = min($tablaNueva[$id]['EntradaMAR'], $row['EntradaMAR']);
-        $tablaNueva[$id]['SalidaMAR'] = max($tablaNueva[$id]['SalidaMAR'], $row['SalidaMAR']);
-        $tablaNueva[$id]['EntradaMIE'] = min($tablaNueva[$id]['EntradaMIE'], $row['EntradaMIE']);
-        $tablaNueva[$id]['SalidaMIE'] = max($tablaNueva[$id]['SalidaMIE'], $row['SalidaMIE']);
-        $tablaNueva[$id]['EntradaJUE'] = min($tablaNueva[$id]['EntradaJUE'], $row['EntradaJUE']);
-        $tablaNueva[$id]['SalidaJUE'] = max($tablaNueva[$id]['SalidaJUE'], $row['SalidaJUE']);
-        $tablaNueva[$id]['EntradaVIE'] = min($tablaNueva[$id]['EntradaVIE'], $row['EntradaVIE']);
-        $tablaNueva[$id]['SalidaVIE'] = max($tablaNueva[$id]['SalidaVIE'], $row['SalidaVIE']);
-        $tablaNueva[$id]['EntradaSAB'] = min($tablaNueva[$id]['EntradaSAB'], $row['EntradaSAB']);
-        $tablaNueva[$id]['SalidaSAB'] = max($tablaNueva[$id]['SalidaSAB'], $row['SalidaSAB']);
-        $tablaNueva[$id]['EntradaDOM'] = min($tablaNueva[$id]['EntradaDOM'], $row['EntradaDOM']);
-        $tablaNueva[$id]['SalidaDOM'] = max($tablaNueva[$id]['SalidaDOM'], $row['SalidaDOM']);
+// Consulta para obtener los datos de la tabla 2
+$sql1 = "SELECT PERCVE, PDOCVE FROM tabla2
+GROUP by PERCVE, PDOCVE;";
+$result1 = $conn->query($sql1);
+
+// Iterar sobre los datos de la tabla 2
+if ($result1->num_rows > 0) {
+    while ($row1 = $result1->fetch_assoc()) {
+        $PERCVE = $row1['PERCVE'];
+        $PDOCVE = $row1['PDOCVE'];
+
+        if ($PDOCVE != '') {
+        $sql2 = "SELECT EntradaLUN, SalidaLUN FROM tabla2
+        Where PERCVE = ". $PERCVE ." and PDOCVE = ". $PDOCVE;
+        $result2 = $conn->query($sql2);
+
+        // Lunes
+        if ($result2->num_rows > 0) {
+            while ($row2 = $result2->fetch_assoc()) {
+                $Entrada1 = $row2['EntradaLUN'];
+                $Salida1 = $row2['SalidaLUN'];
+                $IDdia1 = 1;
+                if ($Entrada1 != '' and $Salida1 != '') {
+                    $IDturno = 0;
+                    if (str_contains($Entrada1,'p. m.')){
+                        $IDturno = 1;
+                    }
+                    $insertSQL = "INSERT INTO nueva_tabla1 (PERCVE, PDOCVE, Entrada, Salida, IDdia, IDturno)
+                    VALUES ('$PERCVE', '$PDOCVE', '$Entrada1', '$Salida1', '$IDdia1', '$IDturno')";
+                    $conn->query($insertSQL);
+                }          
+            }      
+        }
+
+        // Martes
+        $sql2 = "SELECT EntradaMAR, SalidaMAR FROM tabla2
+        Where PERCVE = ". $PERCVE ." and PDOCVE = ". $PDOCVE;
+        $result3 = $conn->query($sql2);
+        if ($result3->num_rows > 0) {
+            while ($row3 = $result3->fetch_assoc()) {
+                $Entrada1 = $row3['EntradaMAR'];
+                $Salida1 = $row3['SalidaMAR'];
+                $IDdia1 = 2;
+                if ($Entrada1 != '' and $Salida1 != '') {
+                    $IDturno = 0;
+                    if (str_contains($Entrada1,'p. m.')){
+                        $IDturno = 1;
+                    }
+                    $insertSQL = "INSERT INTO nueva_tabla1 (PERCVE, PDOCVE, Entrada, Salida, IDdia, IDturno)
+                    VALUES ('$PERCVE', '$PDOCVE', '$Entrada1', '$Salida1', '$IDdia1', '$IDturno')";
+                    $conn->query($insertSQL);
+                }          
+            }      
+        }
+
+        // miercoles
+        $sql2 = "SELECT EntradaMIE, SalidaMIE FROM tabla2
+        Where PERCVE = ". $PERCVE ." and PDOCVE = ". $PDOCVE;
+        $result4 = $conn->query($sql2);
+        if ($result4->num_rows > 0) {
+            while ($row4 = $result4->fetch_assoc()) {
+                $Entrada1 = $row4['EntradaMIE'];
+                $Salida1 = $row4['SalidaMIE'];
+                $IDdia1 = 3;
+                if ($Entrada1 != '' and $Salida1 != '') {
+                    $IDturno = 0;
+                    if (str_contains($Entrada1,'p. m.')){
+                        $IDturno = 1;
+                    }
+                    $insertSQL = "INSERT INTO nueva_tabla1 (PERCVE, PDOCVE, Entrada, Salida, IDdia, IDturno)
+                    VALUES ('$PERCVE', '$PDOCVE', '$Entrada1', '$Salida1', '$IDdia1', '$IDturno')";
+                    $conn->query($insertSQL);
+                }          
+            }      
+        }
+
+        // jueves
+        $sql2 = "SELECT EntradaJUE, SalidaJUE FROM tabla2
+        Where PERCVE = ". $PERCVE ." and PDOCVE = ". $PDOCVE;
+        $result5 = $conn->query($sql2);
+        if ($result5->num_rows > 0) {
+            while ($row5 = $result5->fetch_assoc()) {
+                $Entrada1 = $row5['EntradaJUE'];
+                $Salida1 = $row5['SalidaJUE'];
+                $IDdia1 = 4;
+                if ($Entrada1 != '' and $Salida1 != '') {
+                    $IDturno = 0;
+                    if (str_contains($Entrada1,'p. m.')){
+                        $IDturno = 1;
+                    }
+                    $insertSQL = "INSERT INTO nueva_tabla1 (PERCVE, PDOCVE, Entrada, Salida, IDdia, IDturno)
+                    VALUES ('$PERCVE', '$PDOCVE', '$Entrada1', '$Salida1', '$IDdia1', '$IDturno')";
+                    $conn->query($insertSQL);
+                }          
+            }      
+        }
+
+        // viernes
+        $sql2 = "SELECT EntradaVIE, SalidaVIE FROM tabla2
+        Where PERCVE = ". $PERCVE ." and PDOCVE = ". $PDOCVE;
+        $result6 = $conn->query($sql2);
+        if ($result6->num_rows > 0) {
+            while ($row6 = $result6->fetch_assoc()) {
+                $Entrada1 = $row6['EntradaVIE'];
+                $Salida1 = $row6['SalidaVIE'];
+                $IDdia1 = 5;
+                if ($Entrada1 != '' and $Salida1 != '') {
+                    $IDturno = 0;
+                    if (str_contains($Entrada1,'p. m.')){
+                        $IDturno = 1;
+                    }
+                    $insertSQL = "INSERT INTO nueva_tabla1 (PERCVE, PDOCVE, Entrada, Salida, IDdia, IDturno)
+                    VALUES ('$PERCVE', '$PDOCVE', '$Entrada1', '$Salida1', '$IDdia1', '$IDturno')";
+                    $conn->query($insertSQL);
+                }          
+            }      
+        }
+
+        // sabado
+        $sql2 = "SELECT EntradaSAB, SalidaSAB FROM tabla2
+        Where PERCVE = ". $PERCVE ." and PDOCVE = ". $PDOCVE;
+        $result7 = $conn->query($sql2);
+        if ($result7->num_rows > 0) {
+            while ($row7 = $result7->fetch_assoc()) {
+                $Entrada1 = $row7['EntradaSAB'];
+                $Salida1 = $row7['SalidaSAB'];
+                $IDdia1 = 6;
+                if ($Entrada1 != '' and $Salida1 != '') {
+                    $IDturno = 0;
+                    if (str_contains($Entrada1,'p. m.')){
+                        $IDturno = 1;
+                    }
+                    $insertSQL = "INSERT INTO nueva_tabla1 (PERCVE, PDOCVE, Entrada, Salida, IDdia, IDturno)
+                    VALUES ('$PERCVE', '$PDOCVE', '$Entrada1', '$Salida1', '$IDdia1', '$IDturno')";
+                    $conn->query($insertSQL);
+                }          
+            }      
+        }
     }
 }
-
-
-echo "<table>";
-echo "<tr><th>PERCVE</th><th>PERAPE</th><th>PERNOM</th><th>PDOCVE</th>
-      <th>EntradaLUN</th><th>SalidaLUN</th><th>EntradaMAR</th><th>SalidaMAR</th>
-      <th>EntradaMIE</th><th>SalidaMIE</th><th>EntradaJUE</th><th>SalidaJUE</th>
-      <th>EntradaVIE</th><th>SalidaVIE</th><th>EntradaSAB</th><th>SalidaSAB</th>
-      <th>EntradaDOM</th><th>SalidaDOM</th></tr>";
-
-foreach ($tablaNueva as $row) {
-    echo "<tr>";
-    echo "<td>".$row['PERCVE']."</td>";
-    echo "<td>".$row['PERAPE']."</td>";
-    echo "<td>".$row['PERNOM']."</td>";
-    echo "<td>".$row['PDOCVE']."</td>";
-    echo "<td>".$row['EntradaLUN']."</td>";
-    echo "<td>".$row['SalidaLUN']."</td>";
-    echo "<td>".$row['EntradaMAR']."</td>";
-    echo "<td>".$row['SalidaMAR']."</td>";
-    echo "<td>".$row['EntradaMIE']."</td>";
-    echo "<td>".$row['SalidaMIE']."</td>";
-    echo "<td>".$row['EntradaJUE']."</td>";
-    echo "<td>".$row['SalidaJUE']."</td>";
-    echo "<td>".$row['EntradaVIE']."</td>";
-    echo "<td>".$row['SalidaVIE']."</td>";
-    echo "<td>".$row['EntradaSAB']."</td>";
-    echo "<td>".$row['SalidaSAB']."</td>";
-    echo "<td>".$row['EntradaDOM']."</td>";
-    echo "<td>".$row['SalidaDOM']."</td>";
-    echo "</tr>";
 }
 
-echo "</table>";
 
-    }
-}
-else{
-    echo "Error de conexion";
-    die();
-}
 
+// Cerrar la conexión
+$conn->close();
 ?>
