@@ -9,10 +9,8 @@
         <link rel="stylesheet" href="CSS/estilos.css">
     </head>
     <body>
-
-        <h2>Nota: las horas se ponen en formato de 24 horas y no </h2>
-        <h2> llevan ":" , ejemplo "9001600" (de 9:00am a 16:00pm) </h2>
-
+        <h2>Nota: El IDdia son numeros del 1 al 6 que seria por ejemplo:</h2>
+        <h2>1 es Lunes, 2 Martes, 3 Miercoles, 4 Jueves, 5 Viernes y 6 Sabado</h2>
         <div class="formulario">
             <h3>Personal con Materias</h3>
         <form action="formu.php" method="post">
@@ -42,87 +40,111 @@
                     </td>
                 </tr>
                 <tr>
-                    <td>Lunes hora:</td>
+                    <td>Entrada1:</td>
                     <td>
-                        <input type="text" placeholder="Lunes hora" name="LUNHRA">
+                        <input type="time" placeholder="Entrada" name="Entrada" required>
                     </td>
                 </tr>
                 <tr>
-                    <td>Lunes aula:</td>
+                    <td>Salida1:</td>
                     <td>
-                        <input type="text" placeholder="Lunes aula" name="LUNAUL">
+                        <input type="time" placeholder="Salida" name="Salida" required>
                     </td>
                 </tr>
                 <tr>
-                    <td>Martes hora:</td>
+                    <td>IDdia1:</td>
                     <td>
-                        <input type="text" placeholder="Martes hora" name="MARHRA">
+                        <input type="number" placeholder="IDdia" name="IDdia" required>
                     </td>
                 </tr>
                 <tr>
-                    <td>Martes aula:</td>
+                    <td>Entrada2:</td>
                     <td>
-                        <input type="text" placeholder="Martes aula" name="MARAUL">
+                        <input type="time" placeholder="Entrada" name="Entrada" required>
                     </td>
                 </tr>
                 <tr>
-                    <td>Miercoles hora:</td>
+                    <td>Salida2:</td>
                     <td>
-                        <input type="text" placeholder="Miercoles hora" name="MIEHRA">
+                        <input type="time" placeholder="Salida" name="Salida" required>
                     </td>
                 </tr>
                 <tr>
-                    <td>Miercoles aula:</td>
+                    <td>IDdia2:</td>
                     <td>
-                        <input type="text" placeholder="Miercoles aula" name="MIEAUL">
+                        <input type="number" placeholder="IDdia" name="IDdia" required>
                     </td>
                 </tr>
                 <tr>
-                    <td>Jueves hora:</td>
+                    <td>Entrada3:</td>
                     <td>
-                        <input type="text" placeholder="Jueves hora" name="JUEHRA">
+                        <input type="time" placeholder="Entrada" name="Entrada" required>
                     </td>
                 </tr>
                 <tr>
-                    <td>Jueves aula:</td>
+                    <td>Salida3:</td>
                     <td>
-                        <input type="text" placeholder="Jueves aula" name="JUEAUL">
+                        <input type="time" placeholder="Salida" name="Salida" required>
                     </td>
                 </tr>
                 <tr>
-                    <td>Viernes hora:</td>
+                    <td>IDdia3:</td>
                     <td>
-                        <input type="text" placeholder="Viernes hora" name="VIEHRA">
+                        <input type="number" placeholder="IDdia" name="IDdia" required>
                     </td>
                 </tr>
                 <tr>
-                    <td>Viernes aula:</td>
+                    <td>Entrada4:</td>
                     <td>
-                        <input type="text" placeholder="Viernes aula" name="VIEAUL">
+                        <input type="time" placeholder="Entrada" name="Entrada" required>
                     </td>
                 </tr>
                 <tr>
-                    <td>Sabado hora:</td>
+                    <td>Salida4:</td>
                     <td>
-                        <input type="text" placeholder="Sabado hora" name="SABHRA">
+                        <input type="time" placeholder="Salida" name="Salida" required>
                     </td>
                 </tr>
                 <tr>
-                    <td>Sabado aula:</td>
+                    <td>IDdia4:</td>
                     <td>
-                        <input type="text" placeholder="Sabado aula" name="SABAUL">
+                        <input type="number" placeholder="IDdia" name="IDdia" required>
                     </td>
                 </tr>
                 <tr>
-                    <td>Domingo hora:</td>
+                    <td>Entrada5:</td>
                     <td>
-                        <input type="text" placeholder="Domingo hora" name="DOMHRA">
+                        <input type="time" placeholder="Entrada" name="Entrada" required>
                     </td>
                 </tr>
                 <tr>
-                    <td>Domingo aula:</td>
+                    <td>Salida5:</td>
                     <td>
-                        <input type="text" placeholder="Domingo aula" name="DOMAUL">
+                        <input type="time" placeholder="Salida" name="Salida" required>
+                    </td>
+                </tr>
+                <tr>
+                    <td>IDdia5:</td>
+                    <td>
+                        <input type="number" placeholder="IDdia" name="IDdia" required>
+                    </td>
+                </tr>
+                <tr>
+                    <td>Entrada6:</td>
+                    <td>
+                        <input type="time" placeholder="Entrada" name="Entrada" required>
+                    </td>
+                </tr>
+                <tr>
+                    <td>Salida6:</td>
+                    <td>
+                        <input type="time" placeholder="Salida" name="Salida" required>
+                    </td>
+                </tr>
+                <tr>
+                    <td>IDdia6:</td>
+                    <td>
+                        <input type="number" placeholder="IDdia" name="IDdia" required>
                     </td>
                 </tr>
                 <tr>
@@ -132,97 +154,5 @@
                 </tr>
             </table>
         </form>
-
-        <h3>Personal sin Materias</h3>
-            <form action="formuA.php" method="post">
-                <table>
-                    <tr>
-                        <td>Periodo:</td>
-                        <td>
-                            <input type="number" placeholder="Periodo" name="PDOCVE" required>
-                        </td>
-                    </tr>
-                    <tr>
-                        <td>Clave personal:</td>
-                        <td>
-                            <input type="number" placeholder="Clave personal" name="PERCVE" required>
-                        </td>
-                    </tr>
-                    <tr>
-                        <td>PERAPE:</td>
-                        <td>
-                            <input type="text" placeholder="Apellidos" name="PERAPE" required>
-                        </td>
-                    </tr>
-                    <tr>
-                        <td>PERNOM:</td>
-                        <td>
-                            <input type="text" placeholder="Nombres" name="PERNOM" required>
-                        </td>
-                    </tr>
-                    <tr>
-                        <td>ACTCVE:</td>
-                        <td>
-                            <input type="text" placeholder="ACTCVE" name="ACTCVE" required>
-                        </td>
-                    </tr>
-                    <tr>
-                        <td>Otro lugar:</td>
-                        <td>
-                            <input type="text" placeholder="Otro lugar" name="OTRLUG" required>
-                        </td>
-                    </tr>
-                    <tr>
-                        <td>Lunes:</td>
-                        <td>
-                            <input type="number" placeholder="Lunes" name="LUNHRA" required>
-                        </td>
-                    </tr>
-                    <tr>
-                        <td>Martes:</td>
-                        <td>
-                            <input type="number" placeholder="Martes" name="MARHRA" required>
-                        </td>
-                    </tr>
-                    <tr>
-                        <td>Miercoles:</td>
-                        <td>
-                            <input type="number" placeholder="Miercoles" name="MIEHRA" required>
-                        </td>
-                    </tr>
-                    <tr>
-                        <td>Jueves:</td>
-                        <td>
-                            <input type="number" placeholder="Jueves" name="JUEHRA" required>
-                        </td>
-                    </tr>
-                    <tr>
-                        <td>Viernes:</td>
-                        <td>
-                            <input type="number" placeholder="Viernes" name="VIEHRA" required>
-                        </td>
-                    </tr>
-                    
-                    <tr>
-                        <td>Sabado:</td>
-                        <td>
-                            <input type="number" placeholder="Sabado" name="SABHRA" required>
-                        </td>
-                    </tr>
-                    <tr>
-                        <td>Domingo:</td>
-                        <td>
-                            <input type="number" placeholder="Domingo" name="DOMHRA" required>
-                        </td>
-                    </tr>
-                    <tr>
-                        <td>
-                            <input type="submit" value="Enviar" name="enviar">
-                        </td>
-                    </tr>
-                </table>
-            </form>
-        </div>
-
     </body>
 </html>

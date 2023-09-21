@@ -3,25 +3,12 @@ $PERCVE = $_POST['PERCVE'];
 $PERAPE = $_POST['PERAPE'];
 $PERNOM = $_POST['PERNOM'];
 $PDOCVE = $_POST['PDOCVE'];
-$LUNHRA = $_POST['LUNHRA'];
-$LUNAUL = $_POST['LUNAUL'];
-$MARHRA = $_POST['MARHRA'];
-$MARAUL = $_POST['MARAUL'];
-$MIEHRA = $_POST['MIEHRA'];
-$MIEAUL = $_POST['MIEAUL'];
-$JUEHRA = $_POST['JUEHRA'];
-$JUEAUL = $_POST['JUEAUL'];
-$VIEHRA = $_POST['VIEHRA'];
-$VIEAUL = $_POST['VIEAUL'];
-$SABHRA = $_POST['SABHRA'];
-$SABAUL = $_POST['SABAUL'];
-$DOMHRA = $_POST['DOMHRA'];
-$DOMAUL = $_POST['DOMAUL'];
+$Entrada = $_POST['Entrada'];
+$Salida = $_POST['Salida'];
+$IDdia = $_POST['IDdia'];
 
-if(!empty($PERCVE) || !empty($PERAPE) || !empty($PERNOM) || !empty($PDOCVE) || !empty($LUNHRA) 
-    || !empty($LUNAUL) || !empty($MARHRA) || !empty($MARAUL) || !empty($MIEHRA) || !empty($MIEAUL) 
-    || !empty($JUEHRA) || !empty($JUEAUL) || !empty($VIEHRA) || !empty($VIEAUL) 
-    || !empty($SABHRA) || !empty($SABAUL) || !empty($DOMHRA) || !empty($DOMAUL) ){
+if(!empty($PERCVE) || !empty($PERAPE) || !empty($PERNOM) || !empty($PDOCVE) ||!empty($Entrada)
+|| !empty($Salida) || !empty(IDdia) ){
     $host = "192.168.51.40";
     $dbusername = "dbadmin";
     $dbpassword = "^Tecnm1072";
@@ -33,9 +20,8 @@ if(!empty($PERCVE) || !empty($PERAPE) || !empty($PERNOM) || !empty($PDOCVE) || !
     }
     else{
         $SELECT = "SELECT PERCVE from bd where PERCVE = ? limit 1 ";
-        $INSERT = "INSERT INTO bd (PERCVE,PERAPE,PERNOM,PDOCVE,LUNHRA,LUNAUL,MARHRA,MARAUL,MIEHRA
-                   ,MIEAUL,JUEHRA,JUEAUL,VIEHRA,VIEAUL,SABHRA,SABAUL,DOMHRA,DOMAUL)
-        values(?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?)";
+        $INSERT = "INSERT INTO bd (PERCVE,PERAPE,PERNOM,PDOCVE,Entrada,Salida,IDdia)
+        values(?,?,?,?,?,?,?)";
 
         $stmt = $conn->prepare($SELECT);
         $stmt ->bind_param( "i", $PERCVE);
@@ -47,9 +33,8 @@ if(!empty($PERCVE) || !empty($PERAPE) || !empty($PERNOM) || !empty($PDOCVE) || !
         {
             $stmt ->close();
             $stmt = $conn->prepare($INSERT);
-            $stmt ->bind_param( "iiiiisisisisisisis", $PERCVE,$PERAPE,$PERNOM,$PDOCVE,$LUNHRA
-                                 ,$LUNAUL,$MARHRA,$MARAUL,$MIEHRA,$MIEAUL,$JUEHRA,$JUEAUL
-                                 ,$VIEHRA,$VIEAUL,$SABHRA,$SABAUL,$DOMHRA,$DOMAUL);
+            $stmt ->bind_param( "ississi", $PERCVE,$PERAPE,$PERNOM,$PDOCVE,$Entrada,
+        $Salida,$IDdia);
             $stmt ->execute();
             echo "Registro Completado";
         }

@@ -37,11 +37,10 @@ if ($result1->num_rows > 0) {
         $PDOCVE = $row1['PDOCVE'];
 
         if ($PDOCVE != '') {
+        //Lunes
         $sql2 = "SELECT EntradaLUN, SalidaLUN FROM tabla1
         Where PERCVE = ". $PERCVE ." and PDOCVE = ". $PDOCVE;
         $result2 = $conn->query($sql2);
-
-        // Lunes
         if ($result2->num_rows > 0) {
             while ($row2 = $result2->fetch_assoc()) {
                 $Entrada1 = $row2['EntradaLUN'];
@@ -168,7 +167,6 @@ if ($result1->num_rows > 0) {
 }
 }
 
-
 // Consulta para obtener los datos de la tabla 2
 $sql1 = "SELECT PERCVE, PDOCVE FROM tabla2
 GROUP by PERCVE, PDOCVE;";
@@ -181,11 +179,11 @@ if ($result1->num_rows > 0) {
         $PDOCVE = $row1['PDOCVE'];
 
         if ($PDOCVE != '') {
+        
+        // Lunes
         $sql2 = "SELECT EntradaLUN, SalidaLUN FROM tabla2
         Where PERCVE = ". $PERCVE ." and PDOCVE = ". $PDOCVE;
         $result2 = $conn->query($sql2);
-
-        // Lunes
         if ($result2->num_rows > 0) {
             while ($row2 = $result2->fetch_assoc()) {
                 $Entrada1 = $row2['EntradaLUN'];
