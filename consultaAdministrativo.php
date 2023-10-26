@@ -21,18 +21,12 @@ if(!trait_exists($PERCVE)){
         echo "<th width='100'> PERCVE </th>";
         echo "<th width='100'> PERAPE </th>";
         echo "<th width='100'> PERNOM </th>";
-        echo "<th width='100'> ACTCVE </th>";
-        echo "<th width='100'> OTRLUG </th>";
-        echo "<th width='100'> LUNHRA </th>";
-        echo "<th width='100'> MARHRA </th>";        
-        echo "<th width='100'> MIEHRA </th>";        
-        echo "<th width='100'> JUEHRA </th>";        
-        echo "<th width='100'> VIEHRA </th>";        
-        echo "<th width='100'> SABHRA </th>";       
-        echo "<th width='100'> DOMHRA </th>";
+        echo "<th width='100'> Entrada </th>";
+        echo "<th width='100'> Salida </th>";
+        echo "<th width='100'> IDdia </th>";
         echo "</tr>";
 
-        $sql=mysqli_query($conn, "SELECT* FROM administrativos where PERCVE = $PERCVE");
+        $sql=mysqli_query($conn, "SELECT* FROM Agrupado where PERCVE = $PERCVE");
             while($row =mysqli_fetch_array($sql)){
 
         echo "<tr>";
@@ -40,15 +34,9 @@ if(!trait_exists($PERCVE)){
         echo "<td align ='center'>".$row['PERCVE']."</td>";
         echo "<td align ='center'>".$row['PERAPE']."</td>";
         echo "<td align ='center'>".$row['PERNOM']."</td>";
-        echo "<td align ='center'>".$row['ACTCVE']."</td>";
-        echo "<td align ='center'>".$row['OTRLUG']."</td>";
-        echo "<td align ='center'>".$row['LUNHRA']."</td>";
-        echo "<td align ='center'>".$row['MARHRA']."</td>";
-        echo "<td align ='center'>".$row['MIEHRA']."</td>";
-        echo "<td align ='center'>".$row['JUEHRA']."</td>";
-        echo "<td align ='center'>".$row['VIEHRA']."</td>";
-        echo "<td align ='center'>".$row['SABHRA']."</td>"; 
-        echo "<td align ='center'>".$row['DOMHRA']."</td>";
+        echo "<td align ='center'>".$row['Entrada']."</td>";
+        echo "<td align ='center'>".$row['Salida']."</td>";
+        echo "<td align ='center'>".$row['IDdia']."</td>";
         echo '<td><a href="Administrativo_eliminar.php?PERCVE='.$row['PERCVE'].'">Eliminar usuario</a></td>';
         echo "</tr>";
         }
