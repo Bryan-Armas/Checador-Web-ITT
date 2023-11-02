@@ -9,9 +9,12 @@
         <link rel="stylesheet" href="CSS/estilos.css">
     </head>
     <body>
+
+        <h2>Nota: El IDdia son numeros del 1 al 6 que seria por ejemplo:</h2>
+        <h2>1 es Lunes, 2 Martes, 3 Miercoles, 4 Jueves, 5 Viernes y 6 Sabado</h2>
         <div class="formulario">
             <h3>Personal con Materias</h3>
-        <form action="Consulta.php" method="post">
+        <form action="Editar.php" method="post">
             <table>
                 <tr>
                     <td>Clave personal:</td>
@@ -19,7 +22,42 @@
                         <input type="number" placeholder="Clave personal" name="PERCVE" required>
                     </td>
                 </tr>
-                
+                <tr>
+                    <td>Periodo:</td>
+                    <td>
+                        <input type="number" placeholder="Periodo" name="PDOCVE" required>
+                    </td>
+                </tr>
+                <tr>
+                    <td>Entrada:</td>
+                    <td>
+                        <input type="time" placeholder="Entrada" name="Entrada" required>
+                    </td>
+                </tr>
+                <tr>
+                    <td>Salida:</td>
+                    <td>
+                        <input type="time" placeholder="Salida" name="Salida" required>
+                    </td>
+                </tr>
+                <tr>
+                    <td>IDdia:</td>
+                    <td>
+                        <input type="number" placeholder="IDdia" name="IDdia" required>
+                    </td>
+                </tr>
+                <tr>
+                    <td>Apellidos:</td>
+                    <td>
+                        <input type="text" placeholder="PERAPE" name="PERAPE" required>
+                    </td>
+                </tr>
+                <tr>
+                    <td>Nombres:</td>
+                    <td>
+                        <input type="text" placeholder="PERNOM" name="PERNOM" required>
+                    </td>
+                </tr>
                 <tr>
                     <td>
                         <input type="submit" value="Enviar" name="enviar">
