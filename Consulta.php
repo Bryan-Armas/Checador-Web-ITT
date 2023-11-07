@@ -38,7 +38,7 @@ if(!trait_exists($PERCVE)){
         echo "<td align ='center'>".$row['IDdia']."</td>";
         echo "<td align ='center'>".$row['PERAPE']."</td>";
         echo "<td align ='center'>".$row['PERNOM']."</td>";
-        echo '<td><a href="Editar.html?ID='.$row['ID'].'">Editar registro</a></td>';
+        echo '<td><a href="Editar.php?ID='.$row['ID'].'">Editar registro</a></td>';
         echo "</tr>";
         }
         echo "</tbody>";
