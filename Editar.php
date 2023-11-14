@@ -1,14 +1,24 @@
 <?php
-
+    
+    $ID = $_POST['ID'];
     if(isset($_GET['upd'])) $_ID = $_GET['upd'];
 
-    $sql = "SELECT * FROM Agrupado WHERE ID = :ID";
-    $stmt = $conexion->prepare($sql);
-    $stmt->bindParam(":ID",$ID);
-    $stmt->execute();
-    $count = $stmt->rowCount();
+    $host = "192.168.51.40";
+    $dbusername = "dbadmin";
+    $dbpassword = "^Tecnm1072";
+    $dbname = "Checador";
 
-    if($count > 0)
+    $conn = new mysqli($host,$dbusername,$dbpassword,$dbname);
+
+    $query = 'SELECT * from Agrupado where ID = $ID ';
+    //$sql = "SELECT * FROM Agrupado WHERE ID = ID";
+    $stmt = $conn->prepare($query);
+    $stmt->bind_param( "i", $ID);
+    $stmt->execute();
+    //$count = $stmt->rowCount();
+    $rnum =$stmt->num_rows;
+
+    if($rnum > 0)
     {
         $datos = $stmt->fetch();
     }

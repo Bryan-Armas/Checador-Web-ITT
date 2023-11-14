@@ -5,31 +5,39 @@ if(!empty($_POST['ID']) && !empty($_POST['PERCVE']) && !empty($_POST['PDOCVE']) 
    && !empty($_POST['Nombres']))
    {
     $ID = $POST['ID'];
-    $ID = $POST['PERCVE'];
-    $ID = $POST['PDOCVE'];
-    $ID = $POST['Entrada'];
-    $ID = $POST['Salida'];
-    $ID = $POST['IDdia'];
-    $ID = $POST['Apellidos'];
-    $ID = $POST['Nombres'];
+    $PERCVE = $POST['PERCVE'];
+    $PDOCVE = $POST['PDOCVE'];
+    $Entrada = $POST['Entrada'];
+    $Salida = $POST['Salida'];
+    $IDdia = $POST['IDdia'];
+    $Apellidos = $POST['Apellidos'];
+    $Nombres = $POST['Nombres'];
 
-    $sql = "UPDATE Agrupado SET PERCVE = :PERCVE, PDOCVE = :PDOCVE, Entrada = :Entrada, Salida = :Salida, 
-           IDdia = :IDdia, Apellidos = :Apellidos, Nombres = :Nombres WHERE ID = :ID";
-    $stmt = $conexion->prepare($sql);
-    $stmt->bindParam(":ID",$ID);
-    $stmt->bindParam(":PERCVE",$PERCVE);
-    $stmt->bindParam(":PDOCVE",$PDOCVE);
-    $stmt->bindParam(":Entrada",$Entrada);
-    $stmt->bindParam(":Salida",$Salida);
-    $stmt->bindParam(":IDdia",$IDdia);
-    $stmt->bindParam(":Apellidos",$Apellidos);
-    $stmt->bindParam(":Nombres",$Nombres);
+    $host = "192.168.51.40";
+    $dbusername = "dbadmin";
+    $dbpassword = "^Tecnm1072";
+    $dbname = "Checador";
+
+    $conn = new mysqli($host,$dbusername,$dbpassword,$dbname);
+
+    $sql = "UPDATE Agrupado SET PERCVE = PERCVE, PDOCVE = PDOCVE, Entrada = Entrada, Salida = Salida, 
+           IDdia = IDdia, Apellidos = Apellidos, Nombres = Nombres WHERE ID = ID";
+    $stmt = $conn->prepare($sql);
+    $stmt->bind_param("ID", $ID);
+    $stmt->bind_param("PERCVE", $PERCVE);
+    $stmt->bind_param("PDOCVE", $PDOCVE);
+    $stmt->bind_param("Entrada", $Entrada);
+    $stmt->bind_param("Salida", $Salida);
+    $stmt->bind_param("IDdia", $IDdia);
+    $stmt->bind_param("Apellidos", $Apellidos);
+    $stmt->bind_param("Nombres", $Nombres);
     if($stmt->execute())
     {
         header("location: Consulta.php");
     }
     else
     {
-        print"Complete todos los campos";
+        echo "Todos los datos son Obligatorios";
+        die();
     }
    }
