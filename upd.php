@@ -1,5 +1,7 @@
 <?php
 
+require_once("conexion.php");
+
 if(!empty($_POST['ID']) && !empty($_POST['PERCVE']) && !empty($_POST['PDOCVE']) && !empty($_POST['Entrada']) 
    && !empty($_POST['Salida']) && !empty($_POST['IDdia']) && !empty($_POST['Apellidos']) 
    && !empty($_POST['Nombres']))
@@ -12,13 +14,6 @@ if(!empty($_POST['ID']) && !empty($_POST['PERCVE']) && !empty($_POST['PDOCVE']) 
     $IDdia = $POST['IDdia'];
     $Apellidos = $POST['Apellidos'];
     $Nombres = $POST['Nombres'];
-
-    $host = "192.168.51.40";
-    $dbusername = "dbadmin";
-    $dbpassword = "^Tecnm1072";
-    $dbname = "Checador";
-
-    $conn = new mysqli($host,$dbusername,$dbpassword,$dbname);
 
     $sql = "UPDATE Agrupado SET PERCVE = PERCVE, PDOCVE = PDOCVE, Entrada = Entrada, Salida = Salida, 
            IDdia = IDdia, Apellidos = Apellidos, Nombres = Nombres WHERE ID = ID";

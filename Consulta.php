@@ -1,14 +1,11 @@
 <?php
 
+require_once("conexion.php");
+
 $PERCVE = $_POST['PERCVE'];
 
 if(!trait_exists($PERCVE)){
-    $host = "192.168.51.40";
-    $dbusername = "dbadmin";
-    $dbpassword = "^Tecnm1072";
-    $dbname = "Checador";
 
-    $conn = new mysqli($host,$dbusername,$dbpassword,$dbname);
     if(mysqli_connect_error()){
         die('connect error('.mysqli_connect_error().')'.mysqli_connect_error());
     }

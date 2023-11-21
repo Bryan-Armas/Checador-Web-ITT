@@ -1,26 +1,23 @@
 <?php
+
+    require_once("conexion.php");
     
-    $ID = $_POST['ID'];
-    if(isset($_GET['upd'])) $_ID = $_GET['upd'];
+    if(isset($_GET['upd'])) $ID = $_GET['upd'];
 
-    $host = "192.168.51.40";
-    $dbusername = "dbadmin";
-    $dbpassword = "^Tecnm1072";
-    $dbname = "Checador";
-
-    $conn = new mysqli($host,$dbusername,$dbpassword,$dbname);
-
-    $query = 'SELECT * from Agrupado where ID = $ID ';
-    //$sql = "SELECT * FROM Agrupado WHERE ID = ID";
-    $stmt = $conn->prepare($query);
+    $sql=mysqli_query($conn, "SELECT * from Agrupado where ID = ?");
+    //$sql = "SELECT * FROM Agrupado WHERE ID = ?";
+    $stmt = $conn->prepare($sql);
     $stmt->bind_param( "i", $ID);
     $stmt->execute();
+    $result = $stmt->get_result();
+    $datos = $result->fetch_assoc();
     //$count = $stmt->rowCount();
     $rnum =$stmt->num_rows;
 
     if($rnum > 0)
     {
         $datos = $stmt->fetch();
+        //$datos = $stmt->mysqli_fetch_array();
     }
 ?>
 <div class="container m-auto">
