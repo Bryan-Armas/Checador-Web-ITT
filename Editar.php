@@ -2,51 +2,39 @@
 
     require_once("conexion.php");
     
-    if(isset($_GET['upd'])) $ID = $_GET['upd'];
+    $ID = $_GET['ID'];
 
-    $sql=mysqli_query($conn, "SELECT * from Agrupado where ID = ?");
-    //$sql = "SELECT * FROM Agrupado WHERE ID = ?";
-    $stmt = $conn->prepare($sql);
-    $stmt->bind_param( "i", $ID);
-    $stmt->execute();
-    $result = $stmt->get_result();
-    $datos = $result->fetch_assoc();
-    //$count = $stmt->rowCount();
-    $rnum =$stmt->num_rows;
+    $sql = "SELECT * from Agrupado where ID = $ID";
+    $result = $conn->query($sql);
 
-    if($rnum > 0)
+    if($result->num_rows > 0) 
     {
-        $datos = $stmt->fetch();
-        //$datos = $stmt->mysqli_fetch_array();
-    }
+        $row = $result->fetch_array();
 ?>
-<div class="container m-auto">
-    <div class=" my-3 tect-center d-flex flex-row justify-content-center-"><p><h1>Actualizar usuario</h1></p></div>
+<p><h1>Actualizar usuario</h1></p>
     <form action="upd.php" method="post">
-        <div class="form-group">
-            <input type="hidden" name="ID" value="<?= $datos['ID']?>">
-            <input type="number" name="PERCVE" id="PERCVE" class="form-control" placeholder="PERCVE" value="<?= $datos['PERCVE']?>">
-        </div> 
-        <div class="form-group">
-            <input type="number" name="PDOCVE" id="PDOCVE" class="form-control" placeholder="PDOCVE" value="<?= $datos['PDOCVE']?>">
-        </div> 
-        <div class="form-group">
-            <input type="time" name="Entrada" id="Entrada" class="form-control" placeholder="Entrada" value="<?= $datos['Entrada']?>">
-        </div> 
-        <div class="form-group">
-            <input type="time" name="Salida" id="Salida" class="form-control" placeholder="Salida" value="<?= $datos['Salida']?>">
-        </div> 
-        <div class="form-group">
-            <input type="number" name="IDdia" id="IDdia" class="form-control" placeholder="IDdia" value="<?= $datos['IDdia']?>">
-        </div> 
-        <div class="form-group">
-            <input type="text" name="Apellidos" id="Apellidos" class="form-control" placeholder="Apellidos" value="<?= $datos['Apellidos']?>">
-        </div> 
-        <div class="form-group">
-            <input type="text" name="Nombres" id="Nombres" class="form-control" placeholder="Nombres" value="<?= $datos['Nombres']?>">
-        </div> 
-        <div class="form-group">
-            <input type="submit" value="Actualizar" class="btn btn-success">
-        </div>
+        PERCVE: <input type="number" name="PERCVE"  value="<?PHP echo $row['PERCVE']; ?>"><br>
+
+        PDOCVE:<input type="number" name="PDOCVE" value="<?PHP echo $row['PDOCVE']; ?>"><br>
+
+        Entrada: <input type="time" name="Entrada" value="<?PHP echo$row['Entrada']; ?>"><br>
+
+        Salida: <input type="time" name="Salida" value="<?PHP echo $row['Salida']; ?>"><br>
+
+        IDdia: <input type="number" name="IDdia" value="<?PHP echo $row['IDdia']; ?>"><br>
+
+        PERAPE: <input type="text" name="PERAPE" value="<?PHP echo $row['PERAPE']; ?>"><br>
+
+        PERNOM: <input type="text" name="PERNOM" value="<?PHP echo $row['PERNOM']; ?>"><br>
+            
+        <input type="hidden" name="ID" value="<?PHP echo $row['ID']; ?>"><br>
+        <input type="submit" value="Actualizar" class="btn btn-success">
     </form>
-</div>
+
+    <?php
+} else {
+    echo "Usuario no encontrado";
+}
+
+$conn->close();
+?>

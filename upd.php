@@ -1,38 +1,35 @@
 <?php
-
 require_once("conexion.php");
 
-if(!empty($_POST['ID']) && !empty($_POST['PERCVE']) && !empty($_POST['PDOCVE']) && !empty($_POST['Entrada']) 
-   && !empty($_POST['Salida']) && !empty($_POST['IDdia']) && !empty($_POST['Apellidos']) 
-   && !empty($_POST['Nombres']))
-   {
-    $ID = $POST['ID'];
-    $PERCVE = $POST['PERCVE'];
-    $PDOCVE = $POST['PDOCVE'];
-    $Entrada = $POST['Entrada'];
-    $Salida = $POST['Salida'];
-    $IDdia = $POST['IDdia'];
-    $Apellidos = $POST['Apellidos'];
-    $Nombres = $POST['Nombres'];
+    $ID = $_POST['ID'];
+    $PERCVE = $_POST['PERCVE'];
+    $PDOCVE = $_POST['PDOCVE'];
+    $Entrada = $_POST['Entrada'];
+    $Salida = $_POST['Salida'];
+    $IDdia = $_POST['IDdia'];
+    $PERAPE = $_POST['PERAPE'];
+    $PERNOM = $_POST['PERNOM'];
 
-    $sql = "UPDATE Agrupado SET PERCVE = PERCVE, PDOCVE = PDOCVE, Entrada = Entrada, Salida = Salida, 
-           IDdia = IDdia, Apellidos = Apellidos, Nombres = Nombres WHERE ID = ID";
+    $sql = "UPDATE Agrupado SET PERCVE = ?, PDOCVE = ?, Entrada = ?, Salida = ?, IDdia = ?, PERAPE = ?, PERNOM = ? WHERE ID = ?";
+
     $stmt = $conn->prepare($sql);
-    $stmt->bind_param("ID", $ID);
-    $stmt->bind_param("PERCVE", $PERCVE);
-    $stmt->bind_param("PDOCVE", $PDOCVE);
-    $stmt->bind_param("Entrada", $Entrada);
-    $stmt->bind_param("Salida", $Salida);
-    $stmt->bind_param("IDdia", $IDdia);
-    $stmt->bind_param("Apellidos", $Apellidos);
-    $stmt->bind_param("Nombres", $Nombres);
-    if($stmt->execute())
-    {
-        header("location: Consulta.php");
+
+    if ($stmt) {
+        // Vincular parámetros
+        $stmt->bind_param("iississi", $PERCVE, $PDOCVE, $Entrada, $Salida, $IDdia, $PERAPE, $PERNOM, $ID);
+    
+        // Ejecutar la declaración
+        if ($stmt->execute()) {
+            header("location: Consulta.php");
+            echo "Usuario actualizado correctamente";
+            exit(); // Detener la ejecución después de redirigir
+        } else {
+            echo "Error al actualizar el usuario: " . $stmt->error;
+        }
+        $stmt->close(); // Cerrar la declaración
+    } else {
+        echo "Error en la declaración preparada: " . $conn->error;
     }
-    else
-    {
-        echo "Todos los datos son Obligatorios";
-        die();
-    }
-   }
+    
+    $conn->close();
+    ?>

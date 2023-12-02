@@ -10,7 +10,6 @@ $PERNOM = $_POST['PERNOM'];
 if(!empty($PERCVE) || !empty($PDOCVE) || !empty($Entrada) || !empty($Salida) 
 || !empty($IDdia) || !empty($PERAPE) || !empty($PERNOM)){
 
-    //if(!empty($PERCVE) || !empty($PDOCVE) ||!empty($Entrada) || !empty($Salida) || !empty($IDdia) ){
     $host = "192.168.51.40";
     $dbusername = "dbadmin";
     $dbpassword = "^Tecnm1072";

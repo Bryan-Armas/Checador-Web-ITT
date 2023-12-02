@@ -7,4 +7,9 @@ $dbname = "Checador";
 
 $conn = new mysqli($host,$dbusername,$dbpassword,$dbname);
 
+if($conn->connect_error) 
+{
+    die("Coenxion fallida: " . $conn->connect_error);
+}
+
 ?>
