@@ -17,19 +17,17 @@ require_once("conexion.php");
     if ($stmt) {
         // Vincular parámetros
         $stmt->bind_param("iississi", $PERCVE, $PDOCVE, $Entrada, $Salida, $IDdia, $PERAPE, $PERNOM, $ID);
-    
-        // Ejecutar la declaración
-        if ($stmt->execute()) {
-            header("location: Consulta.php");
-            echo "Usuario actualizado correctamente";
-            exit(); // Detener la ejecución después de redirigir
-        } else {
-            echo "Error al actualizar el usuario: " . $stmt->error;
-        }
-        $stmt->close(); // Cerrar la declaración
+
+     // Ejecutar la declaración
+     if ($stmt->execute()) {
+        echo "Usuario actualizado correctamente";
+        echo "<script>window.onload = function() { window.location = 'Consulta.php'; };</script>";
+        exit(); // Detener la ejecución después de redirigir
     } else {
-        echo "Error en la declaración preparada: " . $conn->error;
+        echo "Error al actualizar el usuario: " . $stmt->error;
     }
-    
-    $conn->close();
+} else {
+    echo "Error en la declaración preparada: " . $conn->error;
+}
+$conn->close();
     ?>
